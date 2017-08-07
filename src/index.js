@@ -1,12 +1,11 @@
 import styles from 'styles';
 
 function AppComponent() {
-	var element = document.createElement('div');
+	var element = document.createElement('h1');
+	var textNode = document.createTextNode('Webpack Scaffolding is working');
+	element.appendChild(textNode);
 
-	element.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
-	element.innerHTML = "Webpack Scaffolding is working";
-
-	return element;
+	document.body.appendChild(element);
 }
 
-document.body.appendChild(AppComponent());
+AppComponent();
