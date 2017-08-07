@@ -10,6 +10,14 @@ module.exports = {
 		filename: 'js/[name].bundle.[hash].js',
 		path: path.resolve(__dirname, 'dist')
 	},
+	resolve: {
+		modules: [
+			path.resolve(__dirname, "src"),
+			path.resolve(__dirname, "src/scss/"),
+			"node_modules"
+		],
+		extensions: [".js", ".json",".scss"]
+	},
 	devtool : 'source-map',
 	module: {
 		rules: [
@@ -34,7 +42,7 @@ module.exports = {
 							loader: "sass-loader",
 							options: {
 								includePaths: [
-									path.resolve(__dirname, "scss/includePath")
+									path.resolve(__dirname, "src/scss/")
 								],
 								sourceMap: true
 							}
