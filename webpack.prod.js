@@ -42,14 +42,26 @@ module.exports = {
 							loader: "sass-loader",
 							options: {
 								includePaths: [
-									path.resolve(__dirname, "src/scss/")
+									path.resolve(__dirname, "src/scss/"),
+									path.resolve(__dirname, "node_modules")
 								],
 								sourceMap: true
 							}
 						}
 					]
 				})
-			}
+			},
+			{
+		      	test: /\.js$/,
+		      	use: {
+		        	loader: 'babel-loader',
+		        	options: {
+		          		presets: ['env']
+		        	}
+		      	}
+		    },
+			{	test: /\.(png|svg|jpg|gif)$/, use: ['file-loader'] },
+			{	test: /\.(woff|woff2|eot|ttf|otf)$/, loader: 'file-loader?publicPath=../&name=fonts/[name].[ext]' }
 		]
 	},
 	plugins: [

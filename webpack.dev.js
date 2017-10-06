@@ -49,7 +49,18 @@ module.exports = {
 						}
 					]
 				})
-			}
+			},
+			{
+		      	test: /\.js$/,
+		      	use: {
+		        	loader: 'babel-loader',
+		        	options: {
+		          		presets: ['env']
+		        	}
+		      	}
+		    },
+			{	test: /\.(png|svg|jpg|gif)$/, use: ['file-loader'] },
+			{	test: /\.(woff|woff2|eot|ttf|otf)$/, loader: 'file-loader?publicPath=../&name=fonts/[name].[ext]' }
 		]
 	},
 	plugins: [
@@ -60,6 +71,12 @@ module.exports = {
 		new ExtractTextPlugin({
 			filename:  (getPath) => {
 				return getPath('css/[name].[hash].css').replace('css/js', 'css');
+			},
+			allChunks: true
+		}),
+		new ExtractTextPlugin({
+			filename:  (getPath) => {
+				return getPath('fonts/[name].[hash].[ext]').replace('fonts/js', 'fonts');
 			},
 			allChunks: true
 		}),
